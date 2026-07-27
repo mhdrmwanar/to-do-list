@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Realtime Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand">🧠 DailyFlow</div>
+          <p class="brand-subtitle">Dashboard pribadi yang hidup</p>
+        </div>
+
+        <nav class="nav-links">
+          <a class="active" href="#dashboard">🏠 Dashboard</a>
+          <a href="#todo">✅ To Do List</a>
+          <a href="#calendar">📅 Kalender</a>
+          <a href="#progress">📈 Progress</a>
+          <a href="#targets">🎯 Target</a>
+          <a href="#notes">📝 Catatan</a>
+        </nav>
+
+        <div class="sidebar-card">
+          <p>Hari ini</p>
+          <strong id="todayLabel">--</strong>
+          <span>Jaga fokus dan konsistensi Anda.</span>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Realtime Dashboard</p>
+            <h1>Atur hari Anda dengan lebih tenang dan terarah.</h1>
+          </div>
+          <div class="live-clock">
+            <div id="clock">--:--:--</div>
+            <div id="date">--</div>
+          </div>
+        </header>
+
+        <section id="dashboard" class="hero-grid">
+          <article class="hero-card">
+            <h2>Ringkasan hari ini</h2>
+            <p>Kelola tugas, target, dan catatan dalam satu tampilan yang jelas.</p>
+            <div class="hero-stats">
+              <div>
+                <strong id="taskCount">0</strong>
+                <span>Tugas</span>
+              </div>
+              <div>
+                <strong id="doneCount">0</strong>
+                <span>Selesai</span>
+              </div>
+              <div>
+                <strong id="progressPercent">0%</strong>
+                <span>Progress</span>
+              </div>
+            </div>
+          </article>
+
+          <article id="calendar" class="panel-card calendar-card">
+            <div class="panel-title">
+              <h3>Kalender</h3>
+              <span>Atur tanggal dengan mudah</span>
+            </div>
+            <div class="calendar-toolbar">
+              <button id="prevMonth" type="button" aria-label="Bulan sebelumnya">‹</button>
+              <div class="calendar-heading">
+                <h4 id="calendarMonth">Bulan</h4>
+                <p id="calendarSubtitle">Pilih tanggal favorit Anda</p>
+              </div>
+              <button id="nextMonth" type="button" aria-label="Bulan berikut">›</button>
+            </div>
+            <div class="calendar-inputs">
+              <select id="yearSelect"></select>
+              <select id="monthSelect">
+                <option value="0">Januari</option>
+                <option value="1">Februari</option>
+                <option value="2">Maret</option>
+                <option value="3">April</option>
+                <option value="4">Mei</option>
+                <option value="5">Juni</option>
+                <option value="6">Juli</option>
+                <option value="7">Agustus</option>
+                <option value="8">September</option>
+                <option value="9">Oktober</option>
+                <option value="10">November</option>
+                <option value="11">Desember</option>
+              </select>
+              <input id="dayInput" type="number" min="1" max="31" />
+            </div>
+            <div class="calendar-weekdays">
+              <span>Min</span>
+              <span>Sen</span>
+              <span>Sel</span>
+              <span>Rab</span>
+              <span>Kam</span>
+              <span>Jum</span>
+              <span>Sab</span>
+            </div>
+            <div id="calendarGrid" class="calendar-grid"></div>
+            <div class="calendar-footer">
+              <button id="todayBtn" type="button">Hari ini</button>
+              <p class="calendar-selected">Tanggal terpilih: <strong id="selectedDateText">-</strong></p>
+            </div>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article id="todo" class="panel-card">
+            <div class="panel-title">
+              <h3>To Do List</h3>
+              <span>Realtime</span>
+            </div>
+            <div class="todo-header">
+              <p id="todoDateLabel">Tanggal terpilih: -</p>
+              <span class="todo-hint">Tugas akan tersimpan berdasarkan tanggal yang Anda pilih</span>
+            </div>
+            <form id="taskForm" class="task-form">
+              <input id="taskInput" type="text" placeholder="Tambahkan tugas baru" required />
+              <button type="submit">Tambah</button>
+            </form>
+            <ul id="taskList" class="task-list"></ul>
+          </article>
+
+          <article id="progress" class="panel-card">
+            <div class="panel-title">
+              <h3>Progress</h3>
+              <span>Update otomatis</span>
+            </div>
+            <div class="progress-bar">
+              <div id="progressFill"></div>
+            </div>
+            <div class="metric-list">
+              <div>
+                <strong id="metricComplete">0</strong>
+                <span>Tugas selesai</span>
+              </div>
+              <div>
+                <strong id="metricPending">0</strong>
+                <span>Masih pending</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="content-grid lower-grid">
+          <article id="targets" class="panel-card">
+            <div class="panel-title">
+              <h3>Target</h3>
+              <span>Prioritas</span>
+            </div>
+            <ul class="bullet-list">
+              <li>✅ Selesaikan 3 tugas penting</li>
+              <li>✅ Review progress sebelum jam 6 sore</li>
+              <li>✅ Catat insight hari ini</li>
+            </ul>
+          </article>
+
+          <article id="notes" class="panel-card">
+            <div class="panel-title">
+              <h3>Catatan</h3>
+              <span>Ringkas</span>
+            </div>
+            <ul class="bullet-list">
+              <li>• Fokus pada kualitas, bukan kuantitas</li>
+              <li>• Beri jeda 5 menit setelah setiap blok kerja</li>
+              <li>• Tandai pencapaian kecil untuk menjaga motivasi</li>
+            </ul>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
