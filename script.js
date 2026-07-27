@@ -170,8 +170,8 @@ function saveEditableContent() {
 }
 
 function loadEditableContent() {
-  const defaultTargets = '✅ Selesaikan 3 tugas penting\n✅ Review progress sebelum jam 6 sore\n✅ Catat insight hari ini';
-  const defaultNotes = '• Fokus pada kualitas, bukan kuantitas\n• Beri jeda 5 menit setelah setiap blok kerja\n• Tandai pencapaian kecil untuk menjaga motivasi';
+  const defaultTargets = '';
+  const defaultNotes = '';
 
   if (targetEditor) {
     targetEditor.value = localStorage.getItem('dailyflow-targets') || defaultTargets;
