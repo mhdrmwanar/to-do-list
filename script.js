@@ -12,7 +12,8 @@ const metricComplete = document.getElementById('metricComplete');
 const metricPending = document.getElementById('metricPending');
 const clockEl = document.getElementById('clock');
 const dateEl = document.getElementById('date');
-const todayLabel = document.getElementById('todayLabel');
+const targetEditor = document.getElementById('targetEditor');
+const notesEditor = document.getElementById('notesEditor');
 const calendarGrid = document.getElementById('calendarGrid');
 const calendarMonth = document.getElementById('calendarMonth');
 const calendarSubtitle = document.getElementById('calendarSubtitle');
@@ -55,7 +56,6 @@ function updateClock() {
 
   clockEl.textContent = timeString;
   dateEl.textContent = dateString;
-  todayLabel.textContent = dateString;
 }
 
 function saveTasks() {
@@ -158,6 +158,27 @@ function addTask(text) {
   saveTasks();
   renderTasks();
   taskInput.value = '';
+}
+
+function saveEditableContent() {
+  if (targetEditor) {
+    localStorage.setItem('dailyflow-targets', targetEditor.value);
+  }
+  if (notesEditor) {
+    localStorage.setItem('dailyflow-notes', notesEditor.value);
+  }
+}
+
+function loadEditableContent() {
+  const defaultTargets = '✅ Selesaikan 3 tugas penting\n✅ Review progress sebelum jam 6 sore\n✅ Catat insight hari ini';
+  const defaultNotes = '• Fokus pada kualitas, bukan kuantitas\n• Beri jeda 5 menit setelah setiap blok kerja\n• Tandai pencapaian kecil untuk menjaga motivasi';
+
+  if (targetEditor) {
+    targetEditor.value = localStorage.getItem('dailyflow-targets') || defaultTargets;
+  }
+  if (notesEditor) {
+    notesEditor.value = localStorage.getItem('dailyflow-notes') || defaultNotes;
+  }
 }
 
 function sameDate(a, b) {
@@ -306,7 +327,15 @@ taskForm.addEventListener('submit', (event) => {
   addTask(taskInput.value);
 });
 
+if (targetEditor) {
+  targetEditor.addEventListener('input', saveEditableContent);
+}
+if (notesEditor) {
+  notesEditor.addEventListener('input', saveEditableContent);
+}
+
 populateYearOptions();
+loadEditableContent();
 updateClock();
 setInterval(updateClock, 1000);
 renderTasks();

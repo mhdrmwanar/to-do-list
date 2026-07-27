@@ -271,6 +271,23 @@ body {
   gap: 8px;
 }
 
+.editable-textarea {
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  resize: vertical;
+  font: inherit;
+}
+
+.editable-textarea:focus {
+  outline: 1px solid rgba(91, 192, 255, 0.45);
+  border-color: rgba(91, 192, 255, 0.45);
+}
+
 .task-item {
   display: flex;
   align-items: center;

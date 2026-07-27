@@ -29,11 +29,6 @@
           <a href="#notes">📝 Catatan</a>
         </nav>
 
-        <div class="sidebar-card">
-          <p>Hari ini</p>
-          <strong id="todayLabel">--</strong>
-          <span>Jaga fokus dan konsistensi Anda.</span>
-        </div>
       </aside>
 
       <main class="main-content">
@@ -160,11 +155,7 @@
               <h3>Target</h3>
               <span>Prioritas</span>
             </div>
-            <ul class="bullet-list">
-              <li>✅ Selesaikan 3 tugas penting</li>
-              <li>✅ Review progress sebelum jam 6 sore</li>
-              <li>✅ Catat insight hari ini</li>
-            </ul>
+            <textarea id="targetEditor" class="editable-textarea" rows="5" placeholder="Tulis target Anda..."></textarea>
           </article>
 
           <article id="notes" class="panel-card">
@@ -172,11 +163,7 @@
               <h3>Catatan</h3>
               <span>Ringkas</span>
             </div>
-            <ul class="bullet-list">
-              <li>• Fokus pada kualitas, bukan kuantitas</li>
-              <li>• Beri jeda 5 menit setelah setiap blok kerja</li>
-              <li>• Tandai pencapaian kecil untuk menjaga motivasi</li>
-            </ul>
+            <textarea id="notesEditor" class="editable-textarea" rows="5" placeholder="Tulis catatan Anda..."></textarea>
           </article>
         </section>
       </main>
